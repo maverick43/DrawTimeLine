@@ -33,7 +33,7 @@ namespace DrawTimeLine
             Pen penOrange = new Pen(Color.Orange, 8);
             Pen penRed = new Pen(Color.FromArgb(255,0,0), 8);
             Pen penGreen = new Pen(Color.SeaGreen, 8);
-            float l, t, r;
+            int l, t, r;
             l = 100;
             t = 20;
             r = bitmap.Width - 20;
@@ -91,13 +91,21 @@ namespace DrawTimeLine
             }
 
             g.DrawLine(penRed, l, t, l + (r - l) / 24, t);
-            g.DrawString("吃", fontText, Brushes.Black, new RectangleF(l, t + 5, (r - l) / 24, 20), sf);
+            g.DrawString("吃", fontText, Brushes.Black, new Rectangle(l, t + 5, (r - l) / 24, 20), sf);
+            PictureBox pb = new PictureBox();
+            pb.BackColor = Color.Purple;
+            pb.Location = new Point(l, t - 4);
+            pb.Size = new Size((r - l) / 24, 8);
+            pb.Parent = pbBack;
+            ToolTip tp = new ToolTip();
+            tp.SetToolTip(pb, "lalala\naaa\nhhhh\nkkk");
+            //pb.Show();
             g.DrawLine(penGreen, l + (r - l) / 24 * 2, t, l + (r - l) / 24 * 3, t);
-            g.DrawString("睡", fontText, Brushes.Black, new RectangleF(l + (r - l) / 24 * 2, t + 5, (r - l) / 24, 20), sf);
+            g.DrawString("睡", fontText, Brushes.Black, new Rectangle(l + (r - l) / 24 * 2, t + 5, (r - l) / 24, 20), sf);
             g.DrawLine(penOrange, l + (r - l) / 24 * 4, t, l + (r - l) / 24 * 5, t);
-            g.DrawString("醒", fontText, Brushes.Black, new RectangleF(l + (r - l) / 24 * 4, t + 5, (r - l) / 24, 20), sf);
+            g.DrawString("醒", fontText, Brushes.Black, new Rectangle(l + (r - l) / 24 * 4, t + 5, (r - l) / 24, 20), sf);
             g.DrawLine(penBlack, l + (r - l) / 24 * 6, t, l + (r - l) / 24 * 7, t);
-            g.DrawString("未知", fontText, Brushes.Black, new RectangleF(l + (r - l) / 24 * 6, t + 5, (r - l) / 24, 20), sf);
+            g.DrawString("未知", fontText, Brushes.Black, new Rectangle(l + (r - l) / 24 * 6, t + 5, (r - l) / 24, 20), sf);
 
             pbBack.Size = bitmap.Size;
             pbBack.Image = bitmap;

@@ -7,3 +7,12 @@ E:\VS2019\DrawTimeLine\DrawTimeLine\obj\Debug\DrawTimeLine.Properties.Resources.
 E:\VS2019\DrawTimeLine\DrawTimeLine\obj\Debug\DrawTimeLine.csproj.GenerateResource.cache
 E:\VS2019\DrawTimeLine\DrawTimeLine\obj\Debug\DrawTimeLine.exe
 E:\VS2019\DrawTimeLine\DrawTimeLine\obj\Debug\DrawTimeLine.pdb
+C:\Users\luck\Desktop\DrawTimeLine\DrawTimeLine\bin\Debug\DrawTimeLine.exe.config
+C:\Users\luck\Desktop\DrawTimeLine\DrawTimeLine\bin\Debug\DrawTimeLine.exe
+C:\Users\luck\Desktop\DrawTimeLine\DrawTimeLine\bin\Debug\DrawTimeLine.pdb
+C:\Users\luck\Desktop\DrawTimeLine\DrawTimeLine\obj\Debug\DrawTimeLine.csprojAssemblyReference.cache
+C:\Users\luck\Desktop\DrawTimeLine\DrawTimeLine\obj\Debug\DrawTimeLine.Form1.resources
+C:\Users\luck\Desktop\DrawTimeLine\DrawTimeLine\obj\Debug\DrawTimeLine.Properties.Resources.resources
+C:\Users\luck\Desktop\DrawTimeLine\DrawTimeLine\obj\Debug\DrawTimeLine.csproj.GenerateResource.cache
+C:\Users\luck\Desktop\DrawTimeLine\DrawTimeLine\obj\Debug\DrawTimeLine.exe
+C:\Users\luck\Desktop\DrawTimeLine\DrawTimeLine\obj\Debug\DrawTimeLine.pdb
