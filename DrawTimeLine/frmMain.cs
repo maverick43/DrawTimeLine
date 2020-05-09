@@ -8,15 +8,26 @@ using System.Windows.Forms;
 
 namespace DrawTimeLine
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
         List<TimeState> tss;
 
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
         }
 
+        private void NewPictureBox(Color color, string strToolTip, int left, int top, Size size)
+        {
+            PictureBox pbx = new PictureBox();
+            ToolTip tooltip = new ToolTip();
+            tooltip.SetToolTip(pbx, strToolTip); ;
+            pbx.BackColor = color;
+            pbx.Left = left;
+            pbx.Top = top;
+            pbx.Size = size;
+            pbx.Parent = pbBack;
+        }
         private void btnDraw_Click(object sender, EventArgs e)
         {
             Bitmap bitmap = new Bitmap(panel1.Width - 22, (tss.Count + 1) * 100);
@@ -31,7 +42,7 @@ namespace DrawTimeLine
             g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
             Pen penBlack = new Pen(Color.Black, 8);
             Pen penOrange = new Pen(Color.Orange, 8);
-            Pen penRed = new Pen(Color.FromArgb(255,0,0), 8);
+            Pen penRed = new Pen(Color.FromArgb(255, 0, 0), 8);
             Pen penGreen = new Pen(Color.SeaGreen, 8);
             int l, t, r;
             l = 100;
@@ -51,8 +62,8 @@ namespace DrawTimeLine
                     g.DrawString(hour.ToString(), fontHour, Brushes.Black, new RectangleF(x - 15, t + 5, 30, 20), sf);
                     hour++;
                 }
-                float x1 = 0;
-                float x2 = 0;
+                int x1 = 0;
+                int x2 = 0;
                 Pen PrePen = null;
                 foreach (State s in tss[i].State)
                 {
@@ -76,11 +87,15 @@ namespace DrawTimeLine
                     {
                         x1 = x2;
                         g.DrawLine(PrePen, l, t, x2, t);
+                        //-----------------------------------------------------
+                        NewPictureBox(PrePen.Color, string.Format("{0}:{1} {2}", h, m, s.state), l, t - 4, new Size(x2 - l, 8));
+                        //-----------------------------------------------------
                         continue;
                     }
                     //if(tss[i].Date == "20200503")
                     //Thread.Sleep(1200);
                     g.DrawLine(PrePen, x1, t, x2, t);
+                    NewPictureBox(PrePen.Color, string.Format("{0}:{1} {2}", h, m, s.state), x1, t - 4, new Size(x2 - x1, 8));
                     x1 = x2;
                 }
                 if (i != tss.Count - 1)
@@ -91,14 +106,15 @@ namespace DrawTimeLine
             }
 
             g.DrawLine(penRed, l, t, l + (r - l) / 24, t);
+            NewPictureBox(Color.Red, "吃", l, t - 4, new Size((r - l) / 24, 8));
             g.DrawString("吃", fontText, Brushes.Black, new Rectangle(l, t + 5, (r - l) / 24, 20), sf);
-            PictureBox pb = new PictureBox();
-            pb.BackColor = Color.Purple;
-            pb.Location = new Point(l, t - 4);
-            pb.Size = new Size((r - l) / 24, 8);
-            pb.Parent = pbBack;
-            ToolTip tp = new ToolTip();
-            tp.SetToolTip(pb, "lalala\naaa\nhhhh\nkkk");
+            //PictureBox pb = new PictureBox();
+            //pb.BackColor = Color.Purple;
+            //pb.Location = new Point(l, t - 4);
+            //pb.Size = new Size((r - l) / 24, 8);
+            //pb.Parent = pbBack;
+            //ToolTip tp = new ToolTip();
+            //tp.SetToolTip(pb, "lalala\naaa\nhhhh\nkkk");
             //pb.Show();
             g.DrawLine(penGreen, l + (r - l) / 24 * 2, t, l + (r - l) / 24 * 3, t);
             g.DrawString("睡", fontText, Brushes.Black, new Rectangle(l + (r - l) / 24 * 2, t + 5, (r - l) / 24, 20), sf);
