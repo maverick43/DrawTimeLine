@@ -32,6 +32,7 @@
             this.btnDraw = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnRead = new System.Windows.Forms.Button();
+            this.btnCopyImage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbBack)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -52,7 +53,7 @@
             this.btnDraw.Location = new System.Drawing.Point(106, 451);
             this.btnDraw.Name = "btnDraw";
             this.btnDraw.Size = new System.Drawing.Size(88, 31);
-            this.btnDraw.TabIndex = 1;
+            this.btnDraw.TabIndex = 2;
             this.btnDraw.Text = "画";
             this.btnDraw.UseVisualStyleBackColor = true;
             this.btnDraw.Click += new System.EventHandler(this.btnDraw_Click);
@@ -76,20 +77,32 @@
             this.btnRead.Location = new System.Drawing.Point(12, 451);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(88, 31);
-            this.btnRead.TabIndex = 3;
+            this.btnRead.TabIndex = 1;
             this.btnRead.Text = "读";
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
-            // Form1
+            // btnCopyImage
+            // 
+            this.btnCopyImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCopyImage.Location = new System.Drawing.Point(200, 451);
+            this.btnCopyImage.Name = "btnCopyImage";
+            this.btnCopyImage.Size = new System.Drawing.Size(88, 31);
+            this.btnCopyImage.TabIndex = 2;
+            this.btnCopyImage.Text = "复制截图";
+            this.btnCopyImage.UseVisualStyleBackColor = true;
+            this.btnCopyImage.Click += new System.EventHandler(this.btnCopyImage_Click);
+            // 
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 494);
             this.Controls.Add(this.btnRead);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnCopyImage);
             this.Controls.Add(this.btnDraw);
-            this.Name = "Form1";
+            this.Name = "frmMain";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -106,6 +119,7 @@
         private System.Windows.Forms.Button btnDraw;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnRead;
+        private System.Windows.Forms.Button btnCopyImage;
     }
 }
 

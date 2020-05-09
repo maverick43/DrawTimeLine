@@ -11,6 +11,7 @@ namespace DrawTimeLine
     public partial class frmMain : Form
     {
         List<TimeState> tss;
+        Bitmap bitmap;
 
         public frmMain()
         {
@@ -30,7 +31,7 @@ namespace DrawTimeLine
         }
         private void btnDraw_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = new Bitmap(panel1.Width - 22, (tss.Count + 1) * 100);
+            bitmap = new Bitmap(panel1.Width - 22, (tss.Count + 1) * 100);
             Graphics g = Graphics.FromImage(bitmap);
             g.FillRectangle(Brushes.White, 0, 0, bitmap.Width, bitmap.Width);
             //Graphics g = pbBack.CreateGraphics();
@@ -50,6 +51,7 @@ namespace DrawTimeLine
             r = bitmap.Width - 20;
             int i;
             Pen pen = penBlack;
+            string prestate = "";
             for (i = 0; i < tss.Count; i++)
             {
                 g.DrawString(tss[i].Date, fontText, Brushes.Black, new RectangleF(l - 100, t - 10, 100, 20), sf);
@@ -64,6 +66,8 @@ namespace DrawTimeLine
                 }
                 int x1 = 0;
                 int x2 = 0;
+                int preh = -1;
+                int prem = -1;
                 Pen PrePen = null;
                 foreach (State s in tss[i].State)
                 {
@@ -87,20 +91,25 @@ namespace DrawTimeLine
                     {
                         x1 = x2;
                         g.DrawLine(PrePen, l, t, x2, t);
-                        //-----------------------------------------------------
-                        NewPictureBox(PrePen.Color, string.Format("{0}:{1} {2}", h, m, s.state), l, t - 4, new Size(x2 - l, 8));
-                        //-----------------------------------------------------
+                        NewPictureBox(PrePen.Color, string.Format("00:00 - {0:00}:{1:00} {2}", h, m, prestate), l, t - 4, new Size(x2 - l, 8));
+                        preh = h;
+                        prem = m;
+                        prestate = s.state;
                         continue;
                     }
                     //if(tss[i].Date == "20200503")
                     //Thread.Sleep(1200);
                     g.DrawLine(PrePen, x1, t, x2, t);
-                    NewPictureBox(PrePen.Color, string.Format("{0}:{1} {2}", h, m, s.state), x1, t - 4, new Size(x2 - x1, 8));
+                    NewPictureBox(PrePen.Color, string.Format("{0:00}:{1:00} - {2:00}:{3:00} {4}", preh, prem, h, m, prestate), x1, t - 4, new Size(x2 - x1, 8));
                     x1 = x2;
+                    preh = h;
+                    prem = m;
+                    prestate = s.state;
                 }
                 if (i != tss.Count - 1)
                 {
                     g.DrawLine(pen, x1, t, r, t);
+                    NewPictureBox(pen.Color, string.Format("{0:00}:{1:00} {2}", preh, prem, prestate), x1, t - 4, new Size(r - x1, 8));
                 }
                 t += 100;
             }
@@ -125,10 +134,6 @@ namespace DrawTimeLine
 
             pbBack.Size = bitmap.Size;
             pbBack.Image = bitmap;
-
-            //Bitmap b = bitmap.Clone() as Bitmap;
-            //b.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            //Clipboard.SetImage(b);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -202,6 +207,13 @@ namespace DrawTimeLine
                 }
                 //MessageBox.Show(msg);
             }
+        }
+
+        private void btnCopyImage_Click(object sender, EventArgs e)
+        {
+            Bitmap b = bitmap.Clone() as Bitmap;
+            b.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            Clipboard.SetImage(b);
         }
     }
 }
